@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<robot name="Wardrobe_with_Upper_Storage_and_Lower_Drawers">
+  <link name="cabinet_frame">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/cabinet_frame.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="door_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/door_left.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="door_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/door_right.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="drawer_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/drawer_1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="drawer_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/drawer_2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="handle_v_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/handle_v_1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="handle_v_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/handle_v_2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="handle_h_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/handle_h_1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="handle_h_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/handle_h_2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="joint_door_l_frame" />
+  <joint name="Left Door Swing" type="revolute">
+    <parent link="cabinet_frame" />
+    <child link="joint_door_l_frame" />
+    <origin xyz="0.02 0.48 1.1" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="2.0943951" effort="1" velocity="1" />
+  </joint>
+  <joint name="Left Door Hinge Offset" type="fixed">
+    <parent link="joint_door_l_frame" />
+    <child link="door_left" />
+    <origin xyz="0 0 -0.48" rpy="0 0 0" />
+  </joint>
+  <link name="joint_door_r_frame" />
+  <joint name="Right Door Swing" type="revolute">
+    <parent link="cabinet_frame" />
+    <child link="joint_door_r_frame" />
+    <origin xyz="0.78 0.48 1.1" rpy="0 0 3.14159265" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.0943951" upper="0" effort="1" velocity="1" />
+  </joint>
+  <joint name="Right Door Hinge Offset" type="fixed">
+    <parent link="joint_door_r_frame" />
+    <child link="door_right" />
+    <origin xyz="0.38 0 -0.48" rpy="0 0 3.14159265" />
+  </joint>
+  <link name="joint_drawer_1_frame" />
+  <joint name="Top Drawer Slide" type="prismatic">
+    <parent link="cabinet_frame" />
+    <child link="joint_drawer_1_frame" />
+    <origin xyz="0.4 0.48 0.31" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="0.4" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Top Drawer Rail Offset" type="fixed">
+    <parent link="joint_drawer_1_frame" />
+    <child link="drawer_1" />
+    <origin xyz="-0.38 0 -0.47" rpy="1.57079633 0 0" />
+  </joint>
+  <link name="joint_drawer_2_frame" />
+  <joint name="Bottom Drawer Slide" type="prismatic">
+    <parent link="cabinet_frame" />
+    <child link="joint_drawer_2_frame" />
+    <origin xyz="0.4 0.48 0.02" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="0.4" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Bottom Drawer Rail Offset" type="fixed">
+    <parent link="joint_drawer_2_frame" />
+    <child link="drawer_2" />
+    <origin xyz="-0.38 0 -0.47" rpy="1.57079633 0 0" />
+  </joint>
+  <joint name="Left Door Handle Mount" type="fixed">
+    <parent link="door_left" />
+    <child link="handle_v_1" />
+    <origin xyz="0.3425 0.02 0.38" rpy="0 0 0" />
+  </joint>
+  <joint name="Right Door Handle Mount" type="fixed">
+    <parent link="door_right" />
+    <child link="handle_v_2" />
+    <origin xyz="0.0375 0.02 0.58" rpy="3.14159265 0 3.14159265" />
+  </joint>
+  <joint name="Top Drawer Handle Mount" type="fixed">
+    <parent link="drawer_1" />
+    <child link="handle_h_1" />
+    <origin xyz="0.28 0.47 0.1325" rpy="0 0 0" />
+  </joint>
+  <joint name="Bottom Drawer Handle Mount" type="fixed">
+    <parent link="drawer_2" />
+    <child link="handle_h_2" />
+    <origin xyz="0.28 0.47 0.1325" rpy="0 0 0" />
+  </joint>
+</robot>

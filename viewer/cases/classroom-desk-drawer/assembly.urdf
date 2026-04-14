@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="Classroom_desk_with_built_in_storage_drawer_n_nRequirements_n_Main_work_surface_horizontal_rectangular_desktop_broad_flat_top_moderate_thickness_forming_the_primary_writing_surface_n_Structural_frame_four_vertical_legs_with_rectangular_cross_section_upper_support_rails_directly_beneath_the_desktop_and_lower_side_and_back_stretchers_forming_an_open_frame_base_n_Drawer_bay_shallow_rectangular_under_desktop_compartment_integrated_within_the_front_portion_of_the_frame_positioned_below_the_main_work_surface_n_Storage_drawer_shallow_rectangular_drawer_box_with_side_walls_back_panel_bottom_panel_and_a_front_face_sized_to_fit_the_drawer_bay_opening_n_Drawer_pull_small_horizontal_pull_centered_on_the_drawer_front_n_nSpatial_relations_n_The_desktop_is_the_topmost_component_and_is_supported_from_below_by_the_structural_frame_n_The_four_legs_are_arranged_at_the_desk_corners_upper_rails_connect_the_legs_near_the_underside_of_the_desktop_while_lower_stretchers_connect_the_legs_lower_down_on_the_sides_and_back_n_The_drawer_bay_is_located_immediately_beneath_the_front_area_of_the_desktop_between_the_left_and_right_sides_of_the_frame_n_The_storage_drawer_sits_inside_the_drawer_bay_when_closed_its_front_face_aligns_with_or_sits_very_close_to_the_desk_s_front_plane_n_nMotion_relations_n_The_storage_drawer_translates_horizontally_relative_to_the_desk_body_moving_outward_from_the_front_to_open_and_inward_to_close_n_The_drawer_motion_is_constrained_to_a_single_straight_sliding_path_beneath_the_main_work_surface_with_no_rotation_n_nNotes_n_Describe_the_main_work_surface_supported_by_a_structural_frame_focusing_on_the_movable_drawer_that_slides_horizontally_to_open_and_close_for_accessing_stored_items">
+  <link name="desk_frame">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/desk_frame.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="desktop">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/desktop.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="drawer">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/drawer.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="Desktop Mount" type="fixed">
+    <parent link="desk_frame" />
+    <child link="desktop" />
+    <origin xyz="0 0 0.72" rpy="0 0 0" />
+  </joint>
+  <joint name="Drawer Slide" type="prismatic">
+    <parent link="desk_frame" />
+    <child link="drawer" />
+    <origin xyz="0.227 0 0.658" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.22" effort="1" velocity="0.5" />
+  </joint>
+</robot>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot name="Table_Football_Game_Set">
+  <link name="table_base">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/table_base.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="rod_A1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/rod_A1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="rod_B1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/rod_B1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="rod_A2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/rod_A2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="rod_B2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/rod_B2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="joint_A1_rot_frame" />
+  <link name="joint_A1_slide_frame" />
+  <joint name="Rod A1 Rotate" type="revolute">
+    <parent link="table_base" />
+    <child link="joint_A1_rot_frame" />
+    <origin xyz="-0.2 0 0.1" rpy="-1.57079633 -1.57079633 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rod A1 Slide" type="prismatic">
+    <parent link="joint_A1_rot_frame" />
+    <child link="joint_A1_slide_frame" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.05" upper="0.05" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Rod A1 Mount Offset" type="fixed">
+    <parent link="joint_A1_slide_frame" />
+    <child link="rod_A1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="joint_B1_rot_frame" />
+  <link name="joint_B1_slide_frame" />
+  <joint name="Rod B1 Rotate" type="revolute">
+    <parent link="table_base" />
+    <child link="joint_B1_rot_frame" />
+    <origin xyz="-0.06 0 0.1" rpy="1.57079633 -1.57079633 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rod B1 Slide" type="prismatic">
+    <parent link="joint_B1_rot_frame" />
+    <child link="joint_B1_slide_frame" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.05" upper="0.05" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Rod B1 Mount Offset" type="fixed">
+    <parent link="joint_B1_slide_frame" />
+    <child link="rod_B1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="joint_A2_rot_frame" />
+  <link name="joint_A2_slide_frame" />
+  <joint name="Rod A2 Rotate" type="revolute">
+    <parent link="table_base" />
+    <child link="joint_A2_rot_frame" />
+    <origin xyz="0.06 0 0.1" rpy="-1.57079633 -1.57079633 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rod A2 Slide" type="prismatic">
+    <parent link="joint_A2_rot_frame" />
+    <child link="joint_A2_slide_frame" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.05" upper="0.05" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Rod A2 Mount Offset" type="fixed">
+    <parent link="joint_A2_slide_frame" />
+    <child link="rod_A2" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="joint_B2_rot_frame" />
+  <link name="joint_B2_slide_frame" />
+  <joint name="Rod B2 Rotate" type="revolute">
+    <parent link="table_base" />
+    <child link="joint_B2_rot_frame" />
+    <origin xyz="0.2 0 0.1" rpy="1.57079633 -1.57079633 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rod B2 Slide" type="prismatic">
+    <parent link="joint_B2_rot_frame" />
+    <child link="joint_B2_slide_frame" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.05" upper="0.05" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Rod B2 Mount Offset" type="fixed">
+    <parent link="joint_B2_slide_frame" />
+    <child link="rod_B2" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+</robot>

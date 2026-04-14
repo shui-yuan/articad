@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<robot name="Foldable_Logistics_Trolley">
+  <link name="base_platform">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/base_platform.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="push_handle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/push_handle.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_swivel_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_swivel_1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_swivel_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_swivel_2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_swivel_3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_swivel_3.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_swivel_4">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_swivel_4.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_wheel_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_wheel_1.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_wheel_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_wheel_2.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_wheel_3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_wheel_3.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="caster_wheel_4">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/caster_wheel_4.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="Handle Fold" type="revolute">
+    <parent link="base_platform" />
+    <child link="push_handle" />
+    <origin xyz="0.05 0.3 0.03" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="1.57079633" effort="1" velocity="1" />
+  </joint>
+  <joint name="Front Left Caster Swivel" type="revolute">
+    <parent link="base_platform" />
+    <child link="caster_swivel_1" />
+    <origin xyz="0.15 0.1 0" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Front Right Caster Swivel" type="revolute">
+    <parent link="base_platform" />
+    <child link="caster_swivel_2" />
+    <origin xyz="0.15 0.5 0" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rear Left Caster Swivel" type="revolute">
+    <parent link="base_platform" />
+    <child link="caster_swivel_3" />
+    <origin xyz="0.75 0.1 0" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rear Right Caster Swivel" type="revolute">
+    <parent link="base_platform" />
+    <child link="caster_swivel_4" />
+    <origin xyz="0.75 0.5 0" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159265" upper="3.14159265" effort="1" velocity="1" />
+  </joint>
+  <joint name="Front Left Wheel Roll" type="revolute">
+    <parent link="caster_swivel_1" />
+    <child link="caster_wheel_1" />
+    <origin xyz="-0.03 0 -0.1" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-6.28318531" upper="6.28318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Front Right Wheel Roll" type="revolute">
+    <parent link="caster_swivel_2" />
+    <child link="caster_wheel_2" />
+    <origin xyz="-0.03 0 -0.1" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-6.28318531" upper="6.28318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rear Left Wheel Roll" type="revolute">
+    <parent link="caster_swivel_3" />
+    <child link="caster_wheel_3" />
+    <origin xyz="-0.03 0 -0.1" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-6.28318531" upper="6.28318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rear Right Wheel Roll" type="revolute">
+    <parent link="caster_swivel_4" />
+    <child link="caster_wheel_4" />
+    <origin xyz="-0.03 0 -0.1" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-6.28318531" upper="6.28318531" effort="1" velocity="1" />
+  </joint>
+</robot>

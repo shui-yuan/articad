@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="ArtiCAD: Articulated CAD Assembly Design via Multi-Agent Code Generation - Yuan Shui, Yandong Guan, Zhanwei Zhang">
+  <meta name="description" content="ArtiCAD is the first training-free multi-agent system for editable articulated CAD assembly generation from text or images, with early connector planning and URDF export.">
+  <meta name="keywords" content="CAD, articulated objects, FreeCAD, URDF, multi-agent systems, design automation">
+  <meta name="author" content="Yuan Shui, Yandong Guan, Zhanwei Zhang, Juncheng Hu, Jing Zhang, Dong Xu, Qian Yu">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ArtiCAD Project Page">
+  <meta property="og:title" content="ArtiCAD: Articulated CAD Assembly Design via Multi-Agent Code Generation">
+  <meta property="og:description" content="Editable articulated CAD assembly generation with early connector planning, deterministic assembly, and URDF export.">
+  <meta property="og:url" content="https://shui-yuan.github.io/articad/">
+  <meta property="og:image" content="https://shui-yuan.github.io/articad/static/images/social_preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ArtiCAD: Articulated CAD Assembly Design via Multi-Agent Code Generation">
+  <meta name="twitter:description" content="Editable articulated CAD assembly generation with early connector planning, deterministic assembly, and URDF export.">
+  <meta name="twitter:image" content="https://shui-yuan.github.io/articad/static/images/social_preview.png">
+  <meta name="citation_title" content="ArtiCAD: Articulated CAD Assembly Design via Multi-Agent Code Generation">
+  <meta name="citation_author" content="Yuan Shui">
+  <meta name="citation_author" content="Yandong Guan">
+  <meta name="citation_author" content="Zhanwei Zhang">
+  <meta name="citation_author" content="Juncheng Hu">
+  <meta name="citation_author" content="Jing Zhang">
+  <meta name="citation_author" content="Dong Xu">
+  <meta name="citation_author" content="Qian Yu">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="theme-color" content="#e7ebf2">
+  <title>ArtiCAD | Project Page</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section id="hero" class="hero minimal-hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop section-shell has-text-centered hero-inner">
+        <h1 class="title publication-title"><span class="title-line-top">ArtiCAD: Articulated CAD Assembly Design</span><span class="title-line-break">via Multi-Agent Code Generation</span></h1>
+        <p class="hero-subtitle">ArtiCAD is the first training-free multi-agent system that generates editable articulated CAD assemblies from text or images, with early connector planning and simulation-ready URDF export.</p>
+        <div class="publication-authors">
+          <span class="author-block">Yuan Shui<sup>1</sup></span>
+          <span class="author-block">Yandong Guan<sup>1</sup></span>
+          <span class="author-block">Zhanwei Zhang<sup>2</sup></span>
+          <span class="author-block">Juncheng Hu<sup>1</sup></span>
+          <span class="author-block">Jing Zhang<sup>1</sup></span>
+          <span class="author-block">Dong Xu<sup>3</sup></span>
+          <span class="author-block">Qian Yu<sup>1,†</sup></span>
+        </div>
+        <div class="publication-institutions">
+          <span><sup>1</sup>School of Software, Beihang University</span>
+          <span><sup>2</sup>Zhejiang University</span>
+          <span><sup>3</sup>The University of Hong Kong</span>
+        </div>
+        <div class="publication-note">† Corresponding author: qianyu@buaa.edu.cn</div>
+        <div class="button-row hero-buttons">
+          <a class="button is-dark is-rounded is-small" href="http://arxiv.org/abs/2604.10992/" target="_blank" rel="noopener noreferrer">Paper</a>
+          <a class="button is-light is-rounded is-small button-with-note" href="#" aria-disabled="true" data-note="To be continued">Code</a>
+          <a class="button is-light is-rounded is-small" href="#bibtex">BibTeX</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaser" class="section showcase-section">
+    <div class="container is-max-desktop section-shell">
+      <div class="hero-figure-column">
+        <div class="teaser-carousel" data-teaser-carousel>
+          <div class="teaser-carousel-track">
+            <article class="teaser-slide teaser-slide-preview teaser-slide-prev" aria-hidden="true"></article>
+            <article class="teaser-slide teaser-slide-current"></article>
+            <article class="teaser-slide teaser-slide-preview teaser-slide-next" aria-hidden="true"></article>
+          </div>
+        </div>
+        <p class="figure-caption teaser-carousel-caption">ArtiCAD-generated examples across static, articulated, and industrial tasks.</p>
+        <div class="prototype-showcase" data-prototype-showcase>
+          <div class="showcase-requirement" data-showcase-step="1">
+            <div class="showcase-stage-heading"><span class="showcase-stage-number">01</span><span class="showcase-section-label">Requirement</span></div>
+            <div class="showcase-prompt-shell">
+              <span class="showcase-prompt-avatar"><img src="static/images/teaser-showcase/prompt-user.png" alt="User prompt icon" loading="lazy"></span>
+              <p>Generate a tabletop double-person toy that supports articulated rods and can be fabricated as a compact prototype.</p>
+            </div>
+          </div>
+          <div class="prototype-storyboard" data-prototype-storyboard>
+            <div class="prototype-storyboard-body">
+              <div class="prototype-storyboard-upper-row">
+                <div class="showcase-concepts" data-showcase-step="2">
+                  <div class="showcase-stage-heading"><span class="showcase-stage-number">02</span><span class="showcase-section-label">Brainstorming Module</span><span class="showcase-brainstorming-badge"><img src="static/images/teaser-showcase/brainstorming-icon.png" alt="Brainstorming module icon" loading="lazy"></span></div>
+                  <div class="showcase-concept-list">
+                    <div class="showcase-concept-option">
+                      <span class="showcase-concept-key">A</span>
+                      <div>
+                        <strong>Tabletop Air Hockey</strong>
+                        <p>A puck-sliding arcade game with goals at both ends.</p>
+                      </div>
+                    </div>
+                    <div class="showcase-concept-option is-selected">
+                      <span class="showcase-concept-key">B</span>
+                      <div>
+                        <strong>Tabletop Football</strong>
+                        <p>A compact foosball-style design that turns articulated rods into the core interaction.</p>
+                      </div>
+                      <span class="showcase-selected-pill">Selected</span>
+                    </div>
+                    <div class="showcase-concept-option">
+                      <span class="showcase-concept-key">C</span>
+                      <div>
+                        <strong>Tabletop Curling</strong>
+                        <p>A lane-based target game with sliding pieces and static boundaries.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="prototype-storyboard-lower-row">
+                <div class="showcase-media-strip">
+                  <article class="showcase-media-panel showcase-output-panel" data-showcase-step="3">
+                    <div class="showcase-stage-heading"><span class="showcase-stage-number">03</span><span class="showcase-section-label showcase-section-label-rich" aria-label="ArtiCAD Output"><span class="showcase-brand-word">ArtiCAD</span><span class="showcase-section-label-text">Output</span></span></div>
+                    <img src="static/images/teaser-showcase/articad-assembly.png" alt="Generated tabletop-football CAD assembly from ArtiCAD." loading="lazy">
+                  </article>
+                  <article class="showcase-media-panel showcase-fabrication-panel" data-showcase-step="4">
+                    <div class="showcase-stage-heading"><span class="showcase-stage-number">04</span><span class="showcase-section-label">Fabrication</span></div>
+                    <div class="showcase-fabrication-note"><span>3D-printed on <strong>Bambu Lab P1S</strong> before assembly.</span></div>
+                    <div class="showcase-fabrication-grid">
+                      <img src="static/images/teaser-showcase/fabrication-parts.png" alt="Printed parts prepared for the tabletop-football prototype." loading="lazy">
+                      <img src="static/images/teaser-showcase/fabrication-printing.png" alt="Partially assembled 3D-printed tabletop-football body." loading="lazy">
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <figure class="prototype-showcase-hero" data-showcase-step="5">
+                <div class="showcase-stage-heading"><span class="showcase-stage-number">05</span><span class="showcase-section-label">Physical Prototype</span></div>
+                <img src="static/images/teaser-showcase/physical-prototype.png" alt="3D-printed tabletop-football prototype built from the ArtiCAD-generated assembly." loading="lazy">
+              </figure>
+            </div>
+          </div>
+        </div>
+        <p class="figure-caption prototype-showcase-caption">Requirement-driven conceptual design rendered as a polished storyboard: prompt, selected concept, generated assembly, fabricated components, and final physical prototype.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="abstract" class="section text-section">
+    <div class="container is-max-desktop section-shell">
+      <div class="narrow-column">
+        <h2 class="section-title">Abstract</h2>
+        <div class="prose-block">
+          <p>Parametric Computer-Aided Design (CAD) of articulated assemblies is essential for product development, yet generating these multi-part, movable models from high-level descriptions remains unexplored. To address this, we propose ArtiCAD, the first training-free multi-agent system capable of generating editable, articulated CAD assemblies directly from text or images. Our system divides this complex task among four specialized agents: Design, Generation, Assembly, and Review. One of our key insights is to predict assembly relationships during the initial design stage rather than the assembly stage. By utilizing a Connector that explicitly defines attachment points and joint parameters, ArtiCAD determines these relationships before geometry generation, effectively bypassing the limited spatial reasoning capabilities of current LLMs and VLMs. To further ensure high-quality outputs, we introduce validation steps in the generation and assembly stages, accompanied by a cross-stage rollback mechanism that accurately isolates and corrects design- and code-level errors. Additionally, a self-evolving experience store accumulates design knowledge to continuously improve performance on future tasks. Extensive evaluations on three datasets (ArtiCAD-Bench, CADPrompt, and ACD) validate the effectiveness of our approach. We further demonstrate the applicability of ArtiCAD in requirement-driven conceptual design, physical prototyping, and the generation of embodied AI training assets through URDF export.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="interactive-viewer" class="section viewer-section">
+    <div class="container is-max-desktop section-shell">
+      <div class="narrow-column section-header">
+        <h2 class="section-title">Simulation-Ready Assets</h2>
+        <div class="section-copy-stack">
+          <p class="section-copy">ArtiCAD exports generated assemblies as URDF assets with preserved joint types, joint axes, and motion limits for articulated visualization and downstream robotic simulation. Several generated examples can be previewed directly below.</p>
+        </div>
+      </div>
+      <div class="viewer-column">
+        <div class="viewer-shell">
+          <iframe src="./viewer/" title="ArtiCAD embedded URDF viewer" loading="lazy"></iframe>
+        </div>
+        <p class="viewer-note">Beyond the paper’s core evaluation, our broader pipeline can optionally retrieve materials and attach texture or physical attributes for downstream rendering or simulation. <span class="viewer-note-caveat">This web demo does not run collision-aware simulation, so interpenetration may appear in the viewer; this does not occur in full simulation with collisions enabled.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="method" class="section text-section method-section">
+    <div class="container is-max-desktop section-shell">
+      <div class="narrow-column section-header">
+        <h2 class="section-title">Method</h2>
+        <p class="section-copy">ArtiCAD separates relationship planning from geometry generation. Instead of inferring how finished parts should connect, it predicts assembly relationships and connector specifications at design time, before any geometry is generated, so assembly reduces to deterministic frame alignment.</p>
+      </div>
+      <div class="core-ideas figure-column">
+        <article class="core-idea">
+          <h3>Connector Contract</h3>
+          <p>Named connectors and joint parameters are specified at design time, giving each part an explicit connection plan before geometry generation.</p>
+        </article>
+        <article class="core-idea">
+          <h3>Deterministic Assembly</h3>
+          <p>With connectors specified early, assembly reduces to deterministic frame alignment instead of late spatial inference over finished parts.</p>
+        </article>
+        <article class="core-idea">
+          <h3>Cross-Stage Rollback</h3>
+          <p>Validation classifies failures as DESIGN or CODE, then re-invokes only the responsible stage for targeted rollback and repair.</p>
+        </article>
+        <article class="core-idea">
+          <h3>Experience Store</h3>
+          <p>A self-evolving experience store accumulates reusable design knowledge and retrieves it for future tasks without model fine-tuning.</p>
+        </article>
+      </div>
+      <div class="method-stack figure-column">
+        <figure class="paper-figure method-figure">
+          <img src="static/images/articad-pipeline.png" alt="ArtiCAD pipeline overview">
+        </figure>
+      </div>
+      <div class="method-notes narrow-column">
+        <p class="method-subhead">Four-agent implementation</p>
+        <p><strong>Design Agent.</strong> Reads text, images, or both and produces a kinematic plan with parts, named connectors, and typed joint specifications.</p>
+        <p><strong>Generation Agents.</strong> Generate editable FreeCAD code for each part while realizing the planned connector frames on geometry.</p>
+        <p><strong>Assembly Agent.</strong> Assembles parts by deterministically aligning matched connector pairs, so final assembly does not depend on inferring relationships from shape alone.</p>
+        <p><strong>Review Agent.</strong> Checks geometry and motion, scores the final output, and stores reusable cases for later tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="section showcase-section">
+    <div class="container is-max-desktop section-shell">
+      <div class="narrow-column section-header">
+        <h2 class="section-title">Results</h2>
+        <div class="section-copy-stack">
+          <p class="section-copy">We compare ArtiCAD against strong baselines on open-ended assembly design and articulated-object reconstruction.</p>
+        </div>
+      </div>
+      <div class="results-stack">
+        <article class="result-card">
+          <figure class="paper-figure result-figure figure-column">
+            <img src="static/images/articad-qualitative-results.png" alt="Qualitative results for ArtiCAD">
+          </figure>
+          <p class="figure-caption">ArtiCAD-Bench comparison against the Single-VLM Loop baseline.</p>
+        </article>
+        <article class="result-card">
+          <figure class="paper-figure result-figure figure-column">
+            <img src="static/images/articad-mq2.png" alt="Additional qualitative comparisons on ACD dataset">
+          </figure>
+          <p class="figure-caption centered-caption">ACD comparison against SINGAPO, Articulate-Anything, and PAct.<span class="caption-line-break">Black arrows: prismatic joints. Red arrows: revolute joints.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="bibtex" class="section bibtex-section">
+    <div class="container is-max-desktop section-shell">
+      <div class="narrow-column">
+        <h2 class="section-title">BibTeX</h2>
+        <div class="bibtex-toolbar">
+          <button class="button is-small is-light copy-bibtex-btn" type="button">Copy BibTeX</button>
+        </div>
+        <pre id="bibtex-code" class="bibtex-block">@misc{shui2026articadarticulatedcadassembly,
+      title={ArtiCAD: Articulated CAD Assembly Design via Multi-Agent Code Generation}, 
+      author={Yuan Shui and Yandong Guan and Zhanwei Zhang and Juncheng Hu and Jing Zhang and Dong Xu and Qian Yu},
+      year={2026},
+      eprint={2604.10992},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2604.10992}, 
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer footer-note">
+    <div class="content has-text-centered">
+      <p>ArtiCAD project page.</p>
+    </div>
+  </footer>
+
+  <script defer src="static/js/index.js"></script>
+</body>
+</html>

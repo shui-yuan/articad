@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot name="Armless_office_chair_with_gas_lift_height_adjustment_and_tilting_backrest">
+  <link name="chair_base">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/chair_base.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="gas_lift_sleeve">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/gas_lift_sleeve.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="gas_lift_rod">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/gas_lift_rod.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="seat_assembly">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/seat_assembly.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="backrest">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/backrest.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="Base Mount" type="fixed">
+    <parent link="chair_base" />
+    <child link="gas_lift_sleeve" />
+    <origin xyz="0 0 0.065" rpy="0 0 0" />
+  </joint>
+  <joint name="Seat Height" type="prismatic">
+    <parent link="gas_lift_sleeve" />
+    <child link="gas_lift_rod" />
+    <origin xyz="0 0 0.22" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="0" upper="0.08" effort="1" velocity="0.5" />
+  </joint>
+  <joint name="Seat Support" type="fixed">
+    <parent link="gas_lift_rod" />
+    <child link="seat_assembly" />
+    <origin xyz="0 0 0.07" rpy="0 0 0" />
+  </joint>
+  <joint name="Backrest Tilt" type="revolute">
+    <parent link="seat_assembly" />
+    <child link="backrest" />
+    <origin xyz="-0.235 0 0.085" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="0" upper="0.314159265" effort="1" velocity="1" />
+  </joint>
+</robot>

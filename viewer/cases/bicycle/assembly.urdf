@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<robot name="Bicycle">
+  <link name="frame">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/frame.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="fork_and_handlebar">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/fork_and_handlebar.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="front_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/front_wheel.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="rear_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/rear_wheel.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="crank_assembly">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/crank_assembly.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="pedal_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/pedal_left.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="pedal_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="visual_meshes/pedal_right.glb" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="steering_frame" />
+  <joint name="Steering Turn" type="revolute">
+    <parent link="frame" />
+    <child link="steering_frame" />
+    <origin xyz="0.55 0 0.75" rpy="0 -0.463647609 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.04719755" upper="1.04719755" effort="1" velocity="1" />
+  </joint>
+  <joint name="Steering Headset Offset" type="fixed">
+    <parent link="steering_frame" />
+    <child link="fork_and_handlebar" />
+    <origin xyz="-0.827345152 0 -0.424852916" rpy="0 0.463647609 0" />
+  </joint>
+  <link name="front_wheel_spin_frame" />
+  <joint name="Front Wheel Spin" type="revolute">
+    <parent link="fork_and_handlebar" />
+    <child link="front_wheel_spin_frame" />
+    <origin xyz="0.75 0 0.35" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-62.8318531" upper="62.8318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Front Wheel Axle Offset" type="fixed">
+    <parent link="front_wheel_spin_frame" />
+    <child link="front_wheel" />
+    <origin xyz="-0.75 0.35 0" rpy="1.57079633 0 0" />
+  </joint>
+  <link name="rear_wheel_spin_frame" />
+  <joint name="Rear Wheel Spin" type="revolute">
+    <parent link="frame" />
+    <child link="rear_wheel_spin_frame" />
+    <origin xyz="-0.45 0 0.35" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-62.8318531" upper="62.8318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Rear Wheel Axle Offset" type="fixed">
+    <parent link="rear_wheel_spin_frame" />
+    <child link="rear_wheel" />
+    <origin xyz="0.45 0.35 0" rpy="1.57079633 0 0" />
+  </joint>
+  <link name="crank_spin_frame" />
+  <joint name="Crank Rotation" type="revolute">
+    <parent link="frame" />
+    <child link="crank_spin_frame" />
+    <origin xyz="0 0 0.3" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-62.8318531" upper="62.8318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Crank Mount Offset" type="fixed">
+    <parent link="crank_spin_frame" />
+    <child link="crank_assembly" />
+    <origin xyz="0 0.3 0" rpy="1.57079633 0 0" />
+  </joint>
+  <link name="left_pedal_spin_frame" />
+  <joint name="Left Pedal Spin" type="revolute">
+    <parent link="crank_assembly" />
+    <child link="left_pedal_spin_frame" />
+    <origin xyz="0 0.1 0.475" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-62.8318531" upper="62.8318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Left Pedal Mount Offset" type="fixed">
+    <parent link="left_pedal_spin_frame" />
+    <child link="pedal_left" />
+    <origin xyz="0 0.475 -0.1" rpy="1.57079633 0 0" />
+  </joint>
+  <link name="right_pedal_spin_frame" />
+  <joint name="Right Pedal Spin" type="revolute">
+    <parent link="crank_assembly" />
+    <child link="right_pedal_spin_frame" />
+    <origin xyz="0 -0.1 0.125" rpy="-1.57079633 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-62.8318531" upper="62.8318531" effort="1" velocity="1" />
+  </joint>
+  <joint name="Right Pedal Mount Offset" type="fixed">
+    <parent link="right_pedal_spin_frame" />
+    <child link="pedal_right" />
+    <origin xyz="0 0.125 0.1" rpy="1.57079633 0 0" />
+  </joint>
+</robot>

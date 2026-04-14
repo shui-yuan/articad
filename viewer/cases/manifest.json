@@ -1,0 +1,46 @@
+{
+  "cases": [
+    {
+      "id": "bicycle",
+      "label": "Bicycle",
+      "root": "./bicycle/",
+      "urdf": "assembly.urdf"
+    },
+    {
+      "id": "wardrobe-doors-drawers",
+      "label": "Wardrobe Doors & Drawers",
+      "root": "./wardrobe-doors-drawers/",
+      "urdf": "assembly.urdf"
+    },
+    {
+      "id": "armless-office-chair",
+      "label": "Armless Office Chair",
+      "root": "./armless-office-chair/",
+      "urdf": "assembly.urdf"
+    },
+    {
+      "id": "table-football-game-set",
+      "label": "Table Football Game Set",
+      "root": "./table-football-game-set/",
+      "urdf": "assembly.urdf"
+    },
+    {
+      "id": "foldable-logistics-trolley",
+      "label": "Foldable Logistics Trolley",
+      "root": "./foldable-logistics-trolley/",
+      "urdf": "assembly.urdf"
+    },
+    {
+      "id": "mechanical-piano-metronome",
+      "label": "Mechanical Piano Metronome",
+      "root": "./mechanical-piano-metronome/",
+      "urdf": "assembly.urdf"
+    },
+    {
+      "id": "classroom-desk-drawer",
+      "label": "Classroom Desk with Drawer",
+      "root": "./classroom-desk-drawer/",
+      "urdf": "assembly.urdf"
+    }
+  ]
+}

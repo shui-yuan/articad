@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>ArtiCAD Embedded Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <script>
+    window.ARTICAD_EMBED_CONFIG = {
+      minimalMode: true,
+      presetManifestUrl: './cases/manifest.json'
+    };
+    localStorage.setItem('theme', 'dark');
+    localStorage.setItem('language', 'en-US');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.lang = 'en-US';
+  </script>
+  <style>
+    :root {
+      --bg: #eceff2;
+      --bg-soft: #f1f3f5;
+      --panel: rgba(248, 249, 250, 0.96);
+      --panel-soft: #ffffff;
+      --border: rgba(31, 41, 55, 0.12);
+      --text: #1f2937;
+      --text-muted: #667085;
+      --accent: #4f63c6;
+      --accent-soft: rgba(79, 99, 198, 0.12);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 336px minmax(0, 1fr);
+      gap: 16px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    #canvas-container {
+      position: relative;
+      min-width: 0;
+      height: 100%;
+      background: #aeb4bb;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    #canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #aeb4bb;
+    }
+
+    .side-panel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      display: flex;
+      flex-direction: column;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      z-index: 20;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 36px rgba(31, 45, 73, 0.12);
+    }
+
+    .floating-panel-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      background: linear-gradient(180deg, #ffffff 0%, #f6f7f8 100%);
+    }
+
+    .floating-panel-content {
+      padding: 12px;
+      overflow: hidden;
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--bg-soft);
+    }
+
+    .panel-section {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .preset-case-block,
+    .usage-block,
+    .toggle-block {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .preset-case-label,
+    .usage-title,
+    .toggle-label,
+    .joint-section-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .preset-case-select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 13.5px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .toggle-hint {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 170px;
+    }
+
+    .control-button {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(31, 45, 73, 0.08);
+    }
+
+    .control-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(79, 99, 198, 0.28);
+      color: #3346a3;
+    }
+
+    .usage-list {
+      margin: 0;
+      padding-left: 16px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .status-info {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      max-width: 320px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      z-index: 20;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .joints-section {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      gap: 8px;
+      padding: 2px 2px 0;
+    }
+
+    #joint-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-height: 0;
+      max-height: 100%;
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(102, 112, 133, 0.34) transparent;
+    }
+
+    #joint-controls::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    #joint-controls::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #joint-controls::-webkit-scrollbar-thumb {
+      background: rgba(102, 112, 133, 0.34);
+      border-radius: 6px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+
+    #joint-controls::-webkit-scrollbar-thumb:hover {
+      background: rgba(102, 112, 133, 0.5);
+      background-clip: padding-box;
+    }
+
+    #joint-controls::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    .joint-control.compact {
+      background: #f5f6f7;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 9px 8px;
+      margin-bottom: 0;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .joint-control.compact:hover {
+      border-color: rgba(79, 99, 198, 0.24);
+      box-shadow: 0 6px 14px rgba(31, 45, 73, 0.06);
+    }
+
+    .joint-control.compact .joint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+      min-height: 18px;
+    }
+
+    .joint-control.compact .joint-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+
+    .joint-control.compact .joint-slider-row {
+      display: grid;
+      grid-template-columns: 50px minmax(0, 1fr) 50px;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .joint-control.compact .joint-limit-label {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px 5px;
+      font-size: 10px;
+      background: #ffffff;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      cursor: default;
+    }
+
+    .joint-control.compact .joint-slider {
+      width: 100%;
+      accent-color: var(--accent);
+      margin: 0;
+      height: 18px;
+    }
+
+    .joint-value-unit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .empty-state {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 4px 0;
+    }
+  </style>
+  <script type="module" crossorigin src="./assets/js/index-9fadba43.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/js/three-9c891de0.js">
+  <link rel="modulepreload" crossorigin href="./assets/js/d3-08a4b8ec.js">
+  <link rel="modulepreload" crossorigin href="./assets/js/codemirror-b4790ad6.js">
+  <link rel="modulepreload" crossorigin href="./assets/js/codemirror-themes-0219852f.js">
+</head>
+<body>
+  <div id="container">
+    <div id="floating-joints-panel" class="side-panel">
+      <div class="floating-panel-header">Case &amp; Joints</div>
+      <div class="floating-panel-content">
+        <div class="preset-case-block">
+          <label class="preset-case-label" for="preset-case-select">Case</label>
+          <select id="preset-case-select" class="preset-case-select"></select>
+        </div>
+
+        <div class="toggle-block">
+          <span class="toggle-label">Display</span>
+          <div class="toggle-row">
+            <div class="toggle-hint">Show joint axes in the 3D view.</div>
+            <button class="control-button" id="toggle-joint-axes-btn" data-checked="false">Joint Axes</button>
+          </div>
+        </div>
+
+        <div class="usage-block">
+          <span class="usage-title">How to Use</span>
+          <ul class="usage-list">
+            <li>Left drag: rotate view</li>
+            <li>Right drag: pan view</li>
+            <li>Mouse wheel: zoom</li>
+            <li>Drag joint handles: move articulated joints</li>
+          </ul>
+        </div>
+
+        <div class="joints-section">
+          <span class="joint-section-title">Joints</span>
+          <div id="joint-controls"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="canvas-container">
+      <canvas id="canvas"></canvas>
+      <div id="status-info" class="status-info">Loading preset cases...</div>
+    </div>
+  </div>
+  
+</body>
+</html>
